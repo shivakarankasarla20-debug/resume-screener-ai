@@ -1,22 +1,25 @@
 # Resume Screener
 
-I tried building a small project to understand how resume screening works.
+I built this project to understand how resume screening works using Python.
 
-This program reads a PDF resume and compares it with a job description.  
-It then gives a similarity score based on how much the resume matches the required skills.
+This program reads a resume (PDF file), extracts the text, and compares it with a job description. It converts the text into numbers and calculates a similarity score.
 
-## What I used
-Python, PyPDF2, scikit-learn
-
-## How it works
+## What it does
 - Reads resume from PDF
+- Extracts text
 - Converts text into numbers
 - Compares with job description
 - Prints similarity score
 
-## Run
+## Technologies used
+- Python
+- PyPDF2
+- scikit-learn
+
+## How to run
 pip install PyPDF2 scikit-learn  
 python main.py
 
 ## Note
-I used a sample (AI-generated) resume for testing.
+This is a basic implementation to understand text processing and similarity.
+I used a sample resume for testing.
