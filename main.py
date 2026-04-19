@@ -1,33 +1,38 @@
 from PyPDF2 import PdfReader
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Step 1: Read resume
-reader = PdfReader("resume.pdf")
-text = ""
+# Step 1: list of resumes
+resumes = ["resume1.pdf", "resume2.pdf", "resume3.pdf"]
 
-for page in reader.pages:
-    page_text = page.extract_text()
-    if page_text:
-        text += page_text
-
-resume_text = text.lower()
-
-# Step 2: Job description
+# Step 2: job description
 job_description = "python java sql machine learning"
 
-# Step 3: Convert text to numbers
-documents = [job_description, resume_text]
+results = []
 
-cv = CountVectorizer()
-matrix = cv.fit_transform(documents)
+for file in resumes:
+    reader = PdfReader(file)
+    text = ""
 
-# 🔥 ADD THESE LINES (to understand conversion)
-print("Words:", cv.get_feature_names_out())
-print("Matrix:\n", matrix.toarray())
+    for page in reader.pages:
+        page_text = page.extract_text()
+        if page_text:
+            text += page_text
 
-# Step 4: Calculate similarity
-similarity = cosine_similarity(matrix)[0][1]
+    resume_text = text.lower()
 
-# Step 5: Output
-print("Similarity Score:", similarity)
+    # TF-IDF
+    documents = [job_description, resume_text]
+    tfidf = TfidfVectorizer()
+    matrix = tfidf.fit_transform(documents)
+
+    similarity = cosine_similarity(matrix)[0][1]
+
+    results.append((file, similarity))
+
+# Step 3: sort results
+results.sort(key=lambda x: x[1], reverse=True)
+
+# Step 4: print ranking
+for r in results:
+    print(r[0], "→", round(r[1]*100, 2), "%")
