@@ -1,28 +1,22 @@
-# Resume Screener AI
+# Resume Screener
 
-This is a simple project where I built a resume screening system using Python.
+I tried building a small project to understand how resume screening works.
 
-It reads a resume (PDF file), extracts the text, and compares it with a given job description using basic NLP techniques like TF-IDF and cosine similarity.
+This program reads a PDF resume and compares it with a job description.  
+It then gives a similarity score based on how much the resume matches the required skills.
 
-## What this project does
+## What I used
+Python, PyPDF2, scikit-learn
+
+## How it works
 - Reads resume from PDF
-- Extracts text
+- Converts text into numbers
 - Compares with job description
-- Gives similarity score
+- Prints similarity score
 
-## Technologies used
-- Python
-- PyPDF2
-- Scikit-learn
-
-## How to run
-1. Install libraries:
-   pip install PyPDF2 scikit-learn
-
-2. Add your resume as `resume.pdf`
-
-3. Run:
-   python main.py
+## Run
+pip install PyPDF2 scikit-learn  
+python main.py
 
 ## Note
-This is a basic implementation to understand how resume screening works using AI concepts.
+I used a sample (AI-generated) resume for testing.
